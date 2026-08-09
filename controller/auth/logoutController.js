@@ -21,10 +21,12 @@ export const logout = async (req, res) => {
     },
   );
 
+  const isProduction = process.env.NODE_ENV === "production";
+
   res.clearCookie("refreshToken", {
     httpOnly: true,
-    secure: true,
-    sameSite: "Strict",
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
     path: "/",
   });
 

@@ -12,6 +12,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Vercel terminates HTTPS at its proxy. Trust it so secure cookies work
+// correctly in production.
+app.set("trust proxy", 1);
+
 //============================= Start Server =====================================
 connectDB();
 app.listen(PORT, () => {
@@ -24,7 +28,6 @@ app.use(
     origin: [
       "https://lost-and-found-iota-six.vercel.app",
       "https://devtunnels.ms",
-
       "https://zkx589fb-5173.inc1.devtunnels.ms",
     ],
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
