@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 // Vercel terminates HTTPS at its proxy. Trust it so secure cookies work
 // correctly in production.
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 
 //============================= Start Server =====================================
 connectDB();

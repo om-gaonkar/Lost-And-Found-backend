@@ -89,12 +89,12 @@ export const refreshToken = async (req, res) => {
     await user.save({ validateBeforeSave: false });
 
     // Send new cookie
-    const isProduction = process.env.NODE_ENV === "production";
+    // const isProduction = process.env.NODE_ENV === "production";
 
     res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,
-      secure: isProduction,
-      sameSite: isProduction ? "none" : "lax",
+      secure: false,
+      sameSite: "none",
       path: "/",
       maxAge: rememberMe ? 24 * 60 * 60 * 1000 : 30 * 60 * 1000,
     });

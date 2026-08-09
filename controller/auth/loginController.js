@@ -79,15 +79,11 @@ export const loginUser = async (req, res) => {
     await user.save({ validateBeforeSave: false });
 
     // Send refresh token as HttpOnly cookie
-    const isProduction = process.env.NODE_ENV === "production";
-
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      // The deployed frontend and API have different Vercel domains, so this
-      // is a cross-site request. Browsers only send such cookies with None + Secure.
-      secure: isProduction,
-      sameSite: isProduction ? "none" : "lax",
-      path: "/",
+      secure: false,
+      sameSite: "none",
+
       maxAge: rememberMe
         ? 24 * 60 * 60 * 1000 // 1 day
         : 30 * 60 * 1000, // 30 minutes
