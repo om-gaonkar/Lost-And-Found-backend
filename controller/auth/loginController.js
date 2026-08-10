@@ -81,9 +81,8 @@ export const loginUser = async (req, res) => {
     // Send refresh token as HttpOnly cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "none",
-
       maxAge: rememberMe
         ? 24 * 60 * 60 * 1000 // 1 day
         : 30 * 60 * 1000, // 30 minutes

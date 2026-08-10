@@ -23,9 +23,11 @@ app.listen(PORT, () => {
 });
 
 // ==========================Middleware==================================
+app.use(cookieParser());
 app.use(
   cors({
     origin: [
+      "http://localhost:5173",
       "https://lost-and-found-iota-six.vercel.app",
       "https://devtunnels.ms",
       "https://zkx589fb-5173.inc1.devtunnels.ms",
@@ -41,7 +43,6 @@ app.use(
     credentials: true,
   }),
 );
-app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/item", itemRouter);
