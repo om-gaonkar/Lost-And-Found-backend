@@ -13,6 +13,12 @@ import {
   deleteFounditems,
   deleteLostitems,
 } from "../controller/admin/adminDeleteController.js";
+import {
+  deleteUser,
+  getUsers,
+  updateUser,
+} from "../controller/admin/adminUserController.js";
+import { authMiddlware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -23,5 +29,9 @@ router.patch("/admin-foundItem-Update/:id", adminUpdateFoundItem);
 router.patch("/admin-lostItem-Update/:id", adminUpdateLostItem);
 router.delete("/admin-foundItem-delete/:id", deleteFounditems);
 router.delete("/admin-lostItem-delete/:id", deleteLostitems);
+// ----------User Page Routes---------------
+router.get("/users", authMiddlware, getUsers);
+router.patch("/users/:id", authMiddlware, updateUser);
+router.delete("/users/:id", authMiddlware, deleteUser);
 
 export default router;
