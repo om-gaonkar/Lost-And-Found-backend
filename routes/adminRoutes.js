@@ -19,6 +19,10 @@ import {
   updateUser,
 } from "../controller/admin/adminUserController.js";
 import { authMiddlware } from "../middleware/authMiddleware.js";
+import {
+  adminClaimController,
+  adminEditController,
+} from "../controller/admin/adminClaimItemsController.js";
 
 const router = express.Router();
 
@@ -33,5 +37,7 @@ router.delete("/admin-lostItem-delete/:id", deleteLostitems);
 router.get("/users", authMiddlware, getUsers);
 router.patch("/users/:id", authMiddlware, updateUser);
 router.delete("/users/:id", authMiddlware, deleteUser);
+router.get("/claimItem", authMiddlware, adminClaimController);
+router.patch("/editClaim/:id", authMiddlware, adminEditController);
 
 export default router;

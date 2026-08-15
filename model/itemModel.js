@@ -99,7 +99,7 @@ const itemSchema = new mongoose.Schema(
     },
     claimStatus: {
       type: String,
-      enum: ["pending", "approved", "rejected", "claimed"],
+      enum: ["pending", "inProcess", "rejected", "claimed"],
       default: "pending",
     },
     claimProcess: {
